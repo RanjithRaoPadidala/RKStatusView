@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "RKStatusView"
-  spec.version      = "0.0.1"
+  spec.version      = "0.0.2"
   spec.summary      = "Status View to Display in Centre in the screen."
   spec.description  = "Status View to Display in Centre in the screen"
   spec.homepage     = "https://github.com/RanjithRaoPadidala/RKStatusView"
