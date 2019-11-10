@@ -27,7 +27,7 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/RanjithRaoPadidala/RKStatusView.git", :tag => "#{spec.version}" }
 
 
-  spec.source_files  = "RKStatusView", "RKStatusView/**/*.{h,m,swift}"
+  spec.source_files  = "RKStatusView", "RKStatusView/**/*.{h,m,swift,xib}"
   spec.exclude_files = "Sources/Exclude"
 
 
