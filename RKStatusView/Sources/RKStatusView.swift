@@ -17,6 +17,7 @@ public class RKStatusView: UIView {
     
     let nibName = "RKStatusView"
     var contentView: UIView!
+    var timer: Timer?
     
     /*
     // Only override draw() if you perform custom drawing.
@@ -50,6 +51,42 @@ public class RKStatusView: UIView {
         lblTitle.text = ""
         lblDescription.text = ""
     }
+    public override func didMoveToSuperview() {
+        // Fade in when added to superview
+        // Then add a timer to remove the view
+      self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.15, animations: {
+            self.contentView.alpha = 1.0
+            self.contentView.transform = CGAffineTransform.identity
+        }) { _ in
+            self.timer = Timer.scheduledTimer(
+                timeInterval: TimeInterval(3.0),
+                target: self,
+                selector: #selector(self.removeSelf),
+                userInfo: nil,
+                repeats: false)
+        }
+    }
+    @objc private func removeSelf() {
+        // Animate removal of view
+        UIView.animate(
+            withDuration: 0.15,
+            animations: {
+            self.contentView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+            self.contentView.alpha = 0.0
+        }) { _ in
+            self.removeFromSuperview()
+        }
+    }
+
+    public override func layoutSubviews() {
+        // Rounded corners
+        self.layoutIfNeeded()
+        self.contentView.layer.masksToBounds = true
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.cornerRadius = 10
+    }
+    
     
     // Provide functions to update view
     public func set(image: UIImage) {
